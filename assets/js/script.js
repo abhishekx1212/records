@@ -1,14 +1,24 @@
-let data = [
-    { id: 1, name: "ram", email: 'ram@gmail.com', age: 20 }
-]
+var info = [];
 
+class data {
+    constructor(id, name, email, age) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
+}
 
+window.onload = function () {
+    info.push({ id: 1, name: 'Ram', email: 'ram22@gmail.com', age: 22 });
+    readAll();
+}
 
 function readAll() {
     var tbdata = document.querySelector('.table_data');
-    let elements = '';
-    data.map((val) => (
-        elements += `
+    let tr = '';
+    info.map((val) => (
+        tr += `
             <tr>
                 <td>${val.name}</td>
                 <td>${val.email}</td>
@@ -18,9 +28,9 @@ function readAll() {
                     <button onclick={del(${val.id})}  class="mt-3 btn btn-success btn-design2 rounded-5">DELETE</button>
                 </td>
             </tr>
-        `
+     `
     ))
-    tbdata.innerHTML = elements;
+    tbdata.innerHTML = tr;
 }
 
 function add() {
@@ -37,39 +47,24 @@ function create() {
     let email = document.querySelector('#email').value;
     let age = document.querySelector('#age').value;
 
-    if (name === "") {
-        document.getElementById('nameError').innerHTML = 'Enter Name!';
-        document.getElementById('emailError').innerHTML = 'Enter email!';
-        document.getElementById('ageError').innerHTML = 'Enter age!';
-    }
-    else if (email === "") {
-        document.getElementById('nameError').innerHTML = '';
-        document.getElementById('emailError').innerHTML = 'Enter email!';
-        document.getElementById('ageError').innerHTML = 'Enter age!';
-    } else if (age === "") {
-        document.getElementById('nameError').innerHTML = '';
-        document.getElementById('emailError').innerHTML = '';
-        document.getElementById('ageError').innerHTML = 'Enter age!';
+
+    if (name === "" || email === "" || age === "") {
+        alert('Incomplete Information!')
     } else {
-        document.getElementById('nameError').innerHTML = '';
-        document.getElementById('emailError').innerHTML = '';
-        document.getElementById('ageError').innerHTML = '';
-        var newObj = { id: idx++, name, email, age };
-        data.push(newObj);
+        const newdata = new data(idx++, name, email, age);
+        info.push(newdata);
         document.querySelector('.create-form').style.display = 'none';
         document.querySelector('.addbtn').style.display = "block";
         readAll();
     }
 }
 
-
 function edit(id) {
-    // console.log(id);
     document.querySelector('.update-form').style.display = 'block';
     document.querySelector('.addbtn').style.display = "none";
     document.querySelector('.create-form').style.display = 'none';
 
-    let updateObj = data.find((fnd) => {
+    let updateObj = info.find((fnd) => {
         let fid = fnd.id === id;
         return fid;
     });
@@ -79,7 +74,6 @@ function edit(id) {
     document.querySelector('#Uage').value = updateObj.age;
 }
 
-
 function update() {
     let id = parseInt(document.querySelector('#update_id').value);
     let name = document.querySelector('#Uname').value;
@@ -87,25 +81,24 @@ function update() {
     let age = document.querySelector('#Uage').value
 
     let updateObj = { id, name, email, age };
-    let index = data.findIndex((fnd) => {
+    let index = info.findIndex((fnd) => {
         let fidx = fnd.id === id;
         return fidx;
     });
-    data[index] = updateObj;
+    info[index] = updateObj;
 
     document.querySelector('.update-form').style.display = 'none';
     document.querySelector('.addbtn').style.display = "block";
     readAll();
 }
 
-
 function del(id) {
     document.querySelector('.update-form').style.display = 'none';
     document.querySelector('.addbtn').style.display = "block";
 
-    let delData = data.filter((fnd) => {
+    let delData = info.filter((fnd) => {
         return fnd.id !== id;
     });
-    data = delData;
+    info = delData;
     readAll();
 }

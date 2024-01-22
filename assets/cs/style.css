@@ -1,0 +1,44 @@
+.create-form,
+.update-form {
+    display: none;
+}
+
+.input-design {
+    border-radius: 20px;
+    background-color: rgba(225, 225, 225, 0.7);
+    padding: 5px;
+    padding-left: 20px;
+    border: none;
+    width: 100%;
+    font-size: 20px;
+}
+
+.input-design::placeholder {
+    padding: 0 10px;
+    color: black;
+    font-size: 15px;
+}
+
+.form-design {
+    background-color: rgba(225, 225, 225, 0.4);
+    padding: 20px 10px;
+    border-radius: 20px;
+    border: 3px solid red;
+}
+
+.span-design {
+    font-size: 18px;
+    color: rgb(217, 144, 144);
+}
+
+.btn-design {
+    letter-spacing: 1.2px;
+    font-weight: 500;
+    border: 2px solid red;
+}
+
+.btn-design2 {
+    letter-spacing: 1.2px;
+    font-weight: 500;
+    border: 2px solid red;
+}
