@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        .create-form,
+        .update-form {
+            display: none;
+        }
+
+        .input-design {
+            border-radius: 20px;
+            background-color: rgba(225, 225, 225, 0.7);
+            padding: 5px;
+            padding-left: 20px;
+            border: none;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        .input-design::placeholder {
+            padding: 0 10px;
+            color: black;
+            font-size: 15px;
+        }
+
+        .form-design {
+            background-color: rgba(225, 225, 225, 0.4);
+            padding: 20px 10px;
+            border-radius: 20px;
+            border: 3px solid red;
+        }
+
+        .span-design {
+            font-size: 18px;
+            color: rgb(217, 144, 144);
+        }
+
+        .btn-design {
+            letter-spacing: 1.2px;
+            font-weight: 500;
+            border: 2px solid red;
+        }
+
+        .btn-design2 {
+            letter-spacing: 1.2px;
+            font-weight: 500;
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body onload="readAll()" style="background-color: black;">
+    <div class="container py-5 px-3">
+        <div class="row justify-content-center align-items-first-baseline">
+            <div class="col-3">
+                <div class="form-container">
+                    <form action="" class="create-form form-design">
+                        <input type="text" name="" placeholder="Name" id="name" class="input-design">
+                        <span id="nameError" class="span-design"></span>
+                        <input type="text" name="" placeholder="E-mail" id="email" class="mt-3 input-design">
+                        <span id="emailError" class="span-design"></span>
+                        <input type="text" name="" placeholder="Age" id="age" class="mt-3 input-design">
+                        <span id="ageError" class="span-design"></span><br>
+                        <button type="button" onclick="create()"
+                            class="mt-3 btn btn-success btn-design rounded-5">CREATE</button>
+                    </form>
+                    <form action="" class="update-form form-design">
+                        <input type="text" hidden id="update_id">
+                        <input type="text" name="" placeholder="Uname" id="Uname" class="input-design">
+                        <input type="text" name="" placeholder="Uemail" id="Uemail" class="my-3 input-design">
+                        <input type="text" name="" placeholder="uage" id="Uage" class="input-design"><br>
+                        <button type="button" onclick="update()"
+                            class="mt-3 btn btn-design btn-success rounded-5">UPDATE</button>
+                    </form>
+                    <br>
+                    <button onclick="add()" class="addbtn btn btn-success rounded-3 btn-design">ADD RECORD</button>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="table-container">
+                    <table class="table table-dark table-striped table-bordered border-danger">
+                        <thead>
+                            <th class="col-2">Name</th>
+                            <th class="col-5">Email</th>
+                            <th class="col-1">Age</th>
+                            <th class="col-4">Action</th>
+                        </thead>
+                        <tbody class="table_data"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="index5.js"></script>
