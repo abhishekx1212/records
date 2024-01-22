@@ -24,6 +24,9 @@ function readAll() {
 }
 
 function add() {
+    document.querySelector('#name').value = '';
+    document.querySelector('#email').value = '';
+    document.querySelector('#age').value = '';
     document.querySelector('.create-form').style.display = 'block';
     document.querySelector('.addbtn').style.display = "none";
 }
