@@ -24,8 +24,10 @@ function readAll() {
                 <td>${val.email}</td>
                 <td>${val.age}</td>
                 <td>
-                    <button onclick={edit(${val.id})}  class="mt-3 btn btn-success btn-design2 rounded-5 me-2">EDIT</button>
-                    <button onclick={del(${val.id})}  class="mt-3 btn btn-success btn-design2 rounded-5">DELETE</button>
+                    <div class="btn-box d-flex flex-wrap justify-content-center align-items-center">
+                        <button onclick={edit(${val.id})}  class="mt-3 btn btn-success btn-design2 rounded-5 me-2">EDIT</button>
+                        <button onclick={del(${val.id})}  class="mt-3 btn btn-success btn-design2 rounded-5">DELETE</button>
+                    </div>
                 </td>
             </tr>
      `
