@@ -96,29 +96,31 @@ function update() {
     let name = document.querySelector('#Uname').value;
     let email = document.querySelector('#Uemail').value;
     let age = document.querySelector('#Uage').value
-    let old = '';
-    for (i = 0; i < info.length; i++) {
-        if (info[i].email === email) {
-            old = info[i].email;
-            break;
-        }
-    }
-    if (old === email) {
-        console.log('invalid!');
-        document.querySelector('#emailError').innerHTML = 'Already exist!';
-    } else {
-        document.querySelector('#emailError').innerHTML = '';
-        let updateObj = { id, name, email, age };
-        let index = info.findIndex((fnd) => {
-            let fidx = fnd.id === id;
-            return fidx;
-        });
-        info[index] = updateObj;
+    // let old = '';
+    // let count = 0;
+    // for (i = 0; i < info.length; i++) {
+    //     if (info[i].email === email) {
+    //         // old = info[i].email;
+    //         count++;
+    //     }
+    // }
+    // console.log(count);
+    // if (count === 1) {
+    //     console.log('invalid!');
+    //     document.querySelector('#emailError').innerHTML = 'Already exist!';
+    // } else {}
+    document.querySelector('#emailError').innerHTML = '';
+    let updateObj = { id, name, email, age };
+    let index = info.findIndex((fnd) => {
+        let fidx = fnd.id === id;
+        return fidx;
+    });
+    info[index] = updateObj;
 
-        document.querySelector('.update-form').style.display = 'none';
-        document.querySelector('.addbtn').style.display = "block";
-        readAll();
-    }
+    document.querySelector('.update-form').style.display = 'none';
+    document.querySelector('.addbtn').style.display = "block";
+    readAll();
+
 }
 
 function del(id) {
