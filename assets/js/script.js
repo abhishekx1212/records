@@ -48,16 +48,31 @@ function create() {
     let name = document.querySelector('#name').value;
     let email = document.querySelector('#email').value;
     let age = document.querySelector('#age').value;
-
-
+    let old = '';
+    for (i = 0; i < info.length; i++) {
+        if (info[i].email === email) {
+            old = info[i].email;
+            break;
+        }
+    }
     if (name === "" || email === "" || age === "") {
-        alert('Incomplete Information!')
-    } else {
-        const newdata = new data(idx++, name, email, age);
-        info.push(newdata);
-        document.querySelector('.create-form').style.display = 'none';
-        document.querySelector('.addbtn').style.display = "block";
-        readAll();
+        alert('Incomplete Information!');
+    } else if (age <= 0) {
+        document.getElementById('ageError').innerHTML = 'Invalid age!';
+    }
+    else {
+        if (old === email) {
+            document.getElementById('NemailError').innerHTML = 'Already Exist!';
+            document.getElementById('ageError').innerHTML = '';
+        } else {
+            document.getElementById('ageError').innerHTML = '';
+            document.getElementById('NemailError').innerHTML = '';
+            const newdata = new data(idx++, name, email, age);
+            info.push(newdata);
+            document.querySelector('.create-form').style.display = 'none';
+            document.querySelector('.addbtn').style.display = "block";
+            readAll();
+        }
     }
 }
 
@@ -81,17 +96,29 @@ function update() {
     let name = document.querySelector('#Uname').value;
     let email = document.querySelector('#Uemail').value;
     let age = document.querySelector('#Uage').value
+    let old = '';
+    for (i = 0; i < info.length; i++) {
+        if (info[i].email === email) {
+            old = info[i].email;
+            break;
+        }
+    }
+    if (old === email) {
+        console.log('invalid!');
+        document.querySelector('#emailError').innerHTML = 'Already exist!';
+    } else {
+        document.querySelector('#emailError').innerHTML = '';
+        let updateObj = { id, name, email, age };
+        let index = info.findIndex((fnd) => {
+            let fidx = fnd.id === id;
+            return fidx;
+        });
+        info[index] = updateObj;
 
-    let updateObj = { id, name, email, age };
-    let index = info.findIndex((fnd) => {
-        let fidx = fnd.id === id;
-        return fidx;
-    });
-    info[index] = updateObj;
-
-    document.querySelector('.update-form').style.display = 'none';
-    document.querySelector('.addbtn').style.display = "block";
-    readAll();
+        document.querySelector('.update-form').style.display = 'none';
+        document.querySelector('.addbtn').style.display = "block";
+        readAll();
+    }
 }
 
 function del(id) {
@@ -103,4 +130,13 @@ function del(id) {
     });
     info = delData;
     readAll();
+}
+
+function back() {
+    document.querySelector('.update-form').style.display = 'none';
+    document.querySelector('.create-form').style.display = 'none';
+    document.querySelector('.addbtn').style.display = "block";
+    document.getElementById('ageError').innerHTML = '';
+    document.getElementById('NemailError').innerHTML = '';
+    document.querySelector('#emailError').innerHTML = '';
 }
